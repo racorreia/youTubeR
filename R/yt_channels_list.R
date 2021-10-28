@@ -52,19 +52,19 @@ yt_channels_list <- function(part, id, maxResults = NULL, pageToken = NULL, api.
 
     # Test if maxResults valus is provided
     if(!is.null(maxResults)){
-      if(is.numeric(maxResults)){
+      if(is.numeric(maxResults) && maxResults <= 50 && maxResults >= 1){
         call <- paste0(call, "&maxResults=", maxResults)
       } else {
-        stop("Parameter \'maxResults\' includes non valid values")
+        stop("Parameter \'maxResults\' must be a number between 1 and 50")
       }
     }
 
-    # Test if maxResults valus is provided
+    # Test if pageToken value is provided
     if(!is.null(pageToken)){
       if(is.character(maxResults)){
         call <- paste0(call, "&pageToken=", pageToken)
       } else {
-        stop("Parameter \'pageToken\' includes non valid values")
+        stop("Parameter \'pageToken\' must be a character string")
       }
     }
 
