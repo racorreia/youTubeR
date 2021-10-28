@@ -10,7 +10,6 @@ Authors@R: person(given = "Ricardo",
                   comment = c(ORCID = "0000-0001-7359-9091"))
 Description: This package provides tolls to interact with the official YouTube API.
 Language: en-US
-anguage: en-US
 URL: https://github.com/racorreia/olxbR
 BugReports: https://github.com/racorreia/olxbR/issues
 Depends:
@@ -19,3 +18,6 @@ Encoding: UTF-8
 RoxygenNote: 7.1.1
 LazyData: true
 License: MIT + file LICENSE
+Imports: 
+    jsonlite (>= 1.5),
+    magrittr
