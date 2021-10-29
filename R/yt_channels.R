@@ -1,16 +1,16 @@
-#' @title YouTube Channels list API node
-#' @description Access the YouTube Channels list API node
-#' @param part The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. Valid parameters can be found in https://developers.google.com/youtube/v3/docs/channels/list
+#' @title YouTube Channels API node
+#' @description Access the YouTube Channels API node
+#' @param part The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. Valid parameters can be found here: https://developers.google.com/youtube/v3/docs/channels/list.
 #' @param id The id property specifies the channel's YouTube channel ID.
 #' @param maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 5.
 #' @param pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
 #' @param api.key The api.key parameter species the key used to access the API.
-#' @return Returns a data.frame with the available information for the parameters specified in 'part'.
+#' @return Returns an object with the API call results.
 #' @examples
 #' \dontrun{
 #'  library(youTubeR)
 #'
-#'  test <- yt_channels_list(part = c("id", "snippet", "localizations", "statistics", "brandingSettings", "topicDetails"),
+#'  test <- yt_channels(part = c("id", "snippet", "localizations", "statistics", "brandingSettings", "topicDetails"),
 #'                           id = "UCJy_cQ9QwYihJ4kIQpvdEAA",
 #'                           maxResults = 50,
 #'                           api.key = INSERT_API_KEY_HERE)
@@ -18,11 +18,11 @@
 #' }
 #' @seealso
 #'  \code{\link[jsonlite]{toJSON, fromJSON}}
-#' @rdname yt_channels_list
+#' @rdname yt_channels
 #' @export
 #' @importFrom jsonlite fromJSON
 
-yt_channels_list <- function(part, id, maxResults = NULL, pageToken = NULL, api.key){
+yt_channels <- function(part, id, maxResults = NULL, pageToken = NULL, api.key){
 
   # Set base API call
   link <- "https://youtube.googleapis.com/youtube/v3/channels?"
@@ -50,7 +50,7 @@ yt_channels_list <- function(part, id, maxResults = NULL, pageToken = NULL, api.
       }
     }
 
-    # Test if maxResults valus is provided
+    # Test if maxResults value is provided
     if(!is.null(maxResults)){
       if(is.numeric(maxResults) && maxResults <= 50 && maxResults >= 1){
         call <- paste0(call, "&maxResults=", maxResults)
@@ -61,7 +61,7 @@ yt_channels_list <- function(part, id, maxResults = NULL, pageToken = NULL, api.
 
     # Test if pageToken value is provided
     if(!is.null(pageToken)){
-      if(is.character(maxResults)){
+      if(is.character(pageToken)){
         call <- paste0(call, "&pageToken=", pageToken)
       } else {
         stop("Parameter \'pageToken\' must be a character string")
@@ -77,5 +77,5 @@ yt_channels_list <- function(part, id, maxResults = NULL, pageToken = NULL, api.
 
     get_call <- jsonlite::fromJSON(txt = call)
 
-    return(get_call$items)
+    return(get_call)
 }
