@@ -10,6 +10,8 @@ yt_search(
   location = NULL,
   locationRadius = NULL,
   radiusUnit = NULL,
+  regionCode = NULL,
+  relevanceLanguage = NULL,
   maxResults = NULL,
   pageToken = NULL,
   publishedAfter = NULL,
@@ -27,6 +29,10 @@ yt_search(
 \item{locationRadius}{The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area. The API does not support locationRadius parameter values larger than 1000 kilometers.}
 
 \item{radiusUnit}{Measurement unit for the locationRadius parameter. Valid measurement units are m, km, ft, and mi.}
+
+\item{regionCode}{The regionCode parameter instructs the API to return search results for videos that can be viewed in the specified country. The parameter value is an ISO 3166-1 alpha-2 country code in string format.}
+
+\item{relevanceLanguage}{The relevanceLanguage parameter instructs the API to return search results that are most relevant to the specified language. The parameter value is typically an ISO 639-1 two-letter language code. However, you should use the values zh-Hans for simplified Chinese and zh-Hant for traditional Chinese. Please note that results in other languages will still be returned if they are highly relevant to the search query term.}
 
 \item{maxResults}{The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive.}
 
@@ -46,7 +52,7 @@ Access the YouTube Search API node
 }
 \examples{
 \dontrun{
-video_search <- yt_search_list(query = INSERT_QUERY,
+video_search <- yt_search(query = INSERT_QUERY,
                         maxResults = 50,
                         publishedAfter = as.Date("2021/10/01"),
                         api.key = INSERT_API_KEY)
@@ -57,4 +63,5 @@ video_search <- yt_search_list(query = INSERT_QUERY,
  \code{\link[lubridate]{is.POSIXt}},\code{\link[lubridate]{is.Date}}
  \code{\link[anytime]{iso8601}}
  \code{\link[jsonlite]{toJSON, fromJSON}}
+ \code{\link[ISOcodes]{ISO_3166_1}},\code{\link[ISOcodes]{ISO_639_2}}
 }

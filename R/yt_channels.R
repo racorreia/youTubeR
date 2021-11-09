@@ -10,10 +10,10 @@
 #' \dontrun{
 #'  library(youTubeR)
 #'
-#'  test <- yt_channels(part = c("id", "snippet", "localizations", "statistics", "brandingSettings", "topicDetails"),
-#'                           id = "UCJy_cQ9QwYihJ4kIQpvdEAA",
-#'                           maxResults = 50,
-#'                           api.key = INSERT_API_KEY_HERE)
+#'  channels <- yt_channels(part = c("id", "snippet", "localizations", "statistics", "brandingSettings", "topicDetails"),
+#'                          id = "UCJy_cQ9QwYihJ4kIQpvdEAA",
+#'                          maxResults = 50,
+#'                          api.key = INSERT_API_KEY_HERE)
 #'
 #' }
 #' @seealso
