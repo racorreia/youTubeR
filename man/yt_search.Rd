@@ -20,7 +20,7 @@ yt_search(
 )
 }
 \arguments{
-\item{query}{The query parameter specifies the query term to search for.}
+\item{query}{The query parameter specifies the query term to search for. Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing.}
 
 \item{type}{The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types. The default value is "video", but also recognizes "channel" and "playlist".}
 

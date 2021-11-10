@@ -1,6 +1,6 @@
 #' @title YouTube Search API node
 #' @description Access the YouTube Search API node
-#' @param query The query parameter specifies the query term to search for.
+#' @param query The query parameter specifies the query term to search for. Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing.
 #' @param type The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types. The default value is "video", but also recognizes "channel" and "playlist".
 #' @param location The location parameter, in conjunction with the locationRadius and radiusUnit parameters, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).
 #' @param locationRadius The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area. The API does not support locationRadius parameter values larger than 1000 kilometers.
