@@ -8,12 +8,10 @@
 #' @return Returns an object with the API call results.
 #' @examples
 #' \dontrun{
-#' if(interactive()){
 #'  videos <- yt_videos(part = c("id", "snippet", "localizations", "statistics", "contentDetails", "topicDetails"),
 #'                          id = "_DbACTmuP_0",
 #'                          maxResults = 50,
 #'                          api.key = INSERT_API_KEY_HERE)
-#'  }
 #' }
 #' @seealso
 #'  \code{\link[jsonlite]{toJSON, fromJSON}}

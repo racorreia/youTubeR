@@ -15,7 +15,7 @@ BugReports: https://github.com/racorreia/olxbR/issues
 Depends:
   R (>= 3.4.0)
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 LazyData: true
 License: MIT + file LICENSE
 Imports: 

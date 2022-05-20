@@ -1,6 +1,7 @@
 #' @title YouTube Search API node
 #' @description Access the YouTube Search API node
 #' @param query The query parameter specifies the query term to search for. Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter value to boating|sailing. Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter value to boating|sailing -fishing.
+#' @param channelId The channelId parameter indicates that the API response should only contain resources created by the channel.
 #' @param type The type parameter restricts a search query to only retrieve a particular type of resource. The value is a comma-separated list of resource types. The default value is "video", but also recognizes "channel" and "playlist".
 #' @param location The location parameter, in conjunction with the locationRadius and radiusUnit parameters, defines a circular geographic area and also restricts a search to videos that specify, in their metadata, a geographic location that falls within that area. The parameter value is a string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).
 #' @param locationRadius The locationRadius parameter, in conjunction with the location parameter, defines a circular geographic area. The API does not support locationRadius parameter values larger than 1000 kilometers.
@@ -33,17 +34,28 @@
 #' @importFrom anytime rfc3339
 #' @importFrom jsonlite fromJSON
 #' @importFrom ISOcodes ISO_3166_1 ISO_639_2
-yt_search <- function(query, type = "video", location = NULL, locationRadius = NULL, radiusUnit = NULL, regionCode = NULL, relevanceLanguage = NULL, maxResults = NULL, pageToken = NULL, publishedAfter = NULL, publishedBefore = NULL, api.key){
+yt_search <- function(query = NULL, channelId = NULL, type = "video", location = NULL, locationRadius = NULL, radiusUnit = NULL, regionCode = NULL, relevanceLanguage = NULL, maxResults = NULL, pageToken = NULL, publishedAfter = NULL, publishedBefore = NULL, api.key){
 
   # Set base API call
-  link <- "https://youtube.googleapis.com/youtube/v3/search?part=snippet"
+  call <- "https://youtube.googleapis.com/youtube/v3/search?part=snippet"
+
+  if(is.null(query) && is.null(channelId)){
+    stop("One of \'query\' or \'channelId\' must be defined")
+  }
 
   # Test if provided query parameter is a string
-  if(is.character(query)){
+  if(!is.null(query) && is.character(query)){
     query <- utils::URLencode(query,reserved=T)
-    call <- paste0(link, "&q=", query)
-  } else {
+    call <- paste0(call, "&q=", query)
+  } else if(!is.null(query)){
     stop("Parameter \'query\' must be a character string")
+  }
+
+  # test if provided channelId parameter is a string
+  if(!is.null(channelId) && is.character(channelId)){
+    call <- paste0(call, "&channelId=", channelId)
+  } else if(!is.null(channelId)){
+    stop("Parameter \'channelId\' must be a character string")
   }
 
   # Test if provided query parameter is a string
